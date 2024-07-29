@@ -1,0 +1,12 @@
+
+
+### VS Code ###
+/**/.vscode/
+/**/node_modules/
+/**/pnpm-lock.yaml
+
+/ui/dist/
+
+/do/server/data/
+/do/resources/
+/do/build/
