@@ -25,23 +25,20 @@
       "oneClick": false,
       "allowToChangeInstallationDirectory": true,
       "perMachine": true,
-      "installerIcon": "./icon.ico"
+      "installerIcon": "./icon/icon.ico"
     },
     "files": [
-      "./icon.ico",
       "./main.js",
       "./preload.js",
       "./handler.js",
-      "./icon/**"
+      "./icon/**",
+      "./server/*.js",
+      "./server/config/*.json"
     ],
     "extraResources": [
       {
-        "from": "resources/dist/",
+        "from": "ui/dist/",
         "to": "app/ui/"
-      },
-      {
-        "from": "server/",
-        "to": "app/server/"
       }
     ],
     "mac": {

@@ -7,6 +7,5 @@
 
 /ui/dist/
 
-/do/server/data/
-/do/resources/
-/do/build/
+/server/data/
+/build/
