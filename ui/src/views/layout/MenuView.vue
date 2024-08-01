@@ -55,12 +55,12 @@
           <template #title>分类管理</template>
         </el-menu-item>
 
-        <el-menu-item index="/index/system">
+        <!-- <el-menu-item index="/index/system">
           <el-icon>
             <Setting />
           </el-icon>
           <template #title>自动转换</template>
-        </el-menu-item>
+        </el-menu-item> -->
       </el-sub-menu>
 
       <el-divider />

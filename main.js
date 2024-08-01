@@ -1,15 +1,9 @@
 const { app, BrowserWindow, ipcMain } = require("electron");
 const path = require("path");
 const handler = require("./handler.js"); // 假设你的函数封装在handler.js中
+require('dotenv').config();  // Load environment variables from .env file
 
-let serverWindowPid;
-let timeOut;
 let win;
-let mode = "pro";
-
-// 设置应用程序的默认语言为中文
-// app.locale = 'zh-CN';
-// app.commandLine.appendSwitch('--lang', 'zh-CN')
 
 function createWindow() {
   // 创建浏览器窗口
@@ -17,7 +11,7 @@ function createWindow() {
     width: 1660,
     height: 960,
     //绝对路径加载图标
-    icon: path.join(__dirname, "icon.ico"),
+    icon: path.join(__dirname, "icon/icon.ico"),
     webPreferences: {
       nodeIntegration: false, // 关闭 Node.js 集成以增强安全性
       contextIsolation: true, // 启用上下文隔离
@@ -28,37 +22,21 @@ function createWindow() {
     resizable: false, // 禁止拖拽放大缩小
     maximizable: true, // 允许最大化
   });
-  // 最大化窗口
-  // win.maximize()
+  // 默认最大化窗口
+  win.maximize()
 
-  let indexPath = path.join(__dirname, "ui/index.html");
-  // let indexPath = path.join(__dirname, "resources/dist/index.html");
-  if (mode === "dev") {
-    win.loadURL("http://127.0.0.1:9090/");
+  if (process.env.NODE_ENV === "development") {
+    win.loadURL("http://localhost:5173/");
+    win.webContents.openDevTools({ mode: "detach" });
   } else {
-    win.loadFile(indexPath);
+    win.loadFile(path.join(__dirname, "ui/index.html"));
   }
 
   // 关闭窗口时
   win.on("close", () => {
-    clearTimeout(timeOut);
-    if (serverWindowPid) {
-      // 根据pid停止关闭后台服务
-      console.log("killing cashbook-server " + serverWindowPid);
-      process.kill(serverWindowPid);
-    }
+    console.log("exit docash");
   });
-  if (mode === "dev") {
-    // 监听窗口的键盘事件
-    win.webContents.on("before-input-event", (event, input) => {
-      // 判断是否按下了 Ctrl 键和鼠标滚轮事件
-      if (input.type === "keyDown" && input.key === "F12") {
-        event.preventDefault();
-        // f12 键按下
-        win.webContents.openDevTools({ mode: "detach" });
-      }
-    });
-  }
+
   win.webContents.on("zoom-changed", (event, input) => {
     event.preventDefault();
     if (event.deltaY > 0) {
@@ -131,7 +109,7 @@ ipcMain.handle("invoke-handler", async (event, functionName, args) => {
       }
     });
   }
-  if (mode === "dev") {
+  if (process.env.NODE_ENV === "development") {
     console.log("server", functionName, ...argarr);
   }
   if (handler[functionName]) {
@@ -141,7 +119,3 @@ ipcMain.handle("invoke-handler", async (event, functionName, args) => {
     return { c: 500, m: `Function ${functionName} not found` };
   }
 });
-
-function wait(ms) {
-  return new Promise((resolve) => setTimeout(() => resolve(), ms));
-}

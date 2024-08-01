@@ -1,10 +1,6 @@
 <template>
   <div class="header-container">
     <div class="header-left">
-      <!-- 图标 -->
-      <!-- <div id="iconTitle">
-       <img alt="cashbook logo" src="@/assets/images/cashbook.png" style="width: 2.8rem" />
-     </div> -->
       <!-- 页面标题 -->
       <h3 style="padding-top: 0.3rem">Thanks for you Uesd</h3>
     </div>
@@ -18,6 +14,7 @@
       <!-- 其他按钮 -->
       <div class="header-info header-buttons">
         <!-- <el-button plain @click="showOnlineDialog()"> 在线同步 </el-button> -->
+        <el-button plain @click="showSetConvertDialog()"> 分类映射 </el-button>
         <el-button plain @click="showPlanDialog()"> 额度设置 </el-button>
         <el-button plain @click="showBookDialog()"> 切换账本 </el-button>
       </div>
@@ -39,19 +36,25 @@
     </div>
   </div>
 
+
+  <!-- 弹出框表单：类型转换配置 -->
+  <el-dialog style="width: 35rem" v-model="setConvertDialog.visible" :title="setConvertDialog.title">
+    <SetConvertDialog />
+  </el-dialog>
+
   <!-- 弹出框表单：账本密钥修改 -->
-  <el-dialog style="width: 30vw" v-model="passwordDialog.visible" :title="passwordDialog.title">
+  <el-dialog style="width: 30rem" v-model="passwordDialog.visible" :title="passwordDialog.title">
     <ChangePasswordDialog />
   </el-dialog>
 
   <!-- 弹出框表单：额度设置 -->
-  <el-dialog style="width: 30vw" v-model="planDialog.visible" :title="planDialog.title">
+  <el-dialog style="width: 30rem" v-model="planDialog.visible" :title="planDialog.title">
     <PlanDialog />
   </el-dialog>
 
   <!-- 弹出框：账本设置 -->
   <el-dialog
-    style="width: 50vw"
+    style="width: 50rem"
     v-model="showBookDialogFlag.visible"
     :title="bookDialog.title"
     @close="checkBook"
@@ -75,6 +78,7 @@ import { showBookDialogFlag } from '@/stores/flag'
 import BookDialog from '@/components/dialog/BookDialog.vue'
 import PlanDialog from '@/components/dialog/PlanDialog.vue'
 import OnlineDialog from '@/components/dialog/OnlineDialog.vue'
+import SetConvertDialog from '@/components/dialog/SetConvertDialog.vue'
 import ChangePasswordDialog from '@/components/dialog/ChangePasswordDialog.vue'
 
 import { getVersion } from '@/api/api.server'
@@ -173,6 +177,15 @@ const onlineDialog = ref({
 const showOnlineDialog = () => {
   onlineDialog.value.visable = true
   onlineDialog.value.title = '额度设置'
+}
+
+const setConvertDialog = ref({
+  visible: false,
+  title: ''
+})
+const showSetConvertDialog = () => {
+  setConvertDialog.value.visible = true
+  setConvertDialog.value.title = '分类映射配置'
 }
 
 const logout = () => {

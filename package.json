@@ -1,6 +1,6 @@
 {
   "name": "docash",
-  "description": "Cashbook on Desktop",
+  "description": "DoCash",
   "version": "2.0.1",
   "main": "main.js",
   "author": {
@@ -16,7 +16,7 @@
   "build": {
     "asar": false,
     "appId": "docash",
-    "productName": "docash",
+    "productName": "DoCash",
     "extends": null,
     "directories": {
       "output": "build"
@@ -81,6 +81,7 @@
   "dependencies": {
     "@streamparser/json": "^0.0.21",
     "csv-parser": "^3.0.0",
+    "dotenv": "^16.4.5",
     "fs": "0.0.1-security",
     "json2csv": "6.0.0-alpha.2",
     "lodash.get": "^4.4.2",

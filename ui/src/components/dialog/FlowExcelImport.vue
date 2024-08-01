@@ -15,17 +15,18 @@
       <br />
       <template #tip>
         <div class="upload-info">
-          <span class="upload-tip"
-            >1、目前仅支持移动端 <b>支付宝/微信/京东金融</b> 导出的 <b>CSV</b> 账单文件；</span
-          >
-          <span class="upload-tip"
-            >2、导入数据默认分为 <b>支出/收入/不计收支</b> 三种流水类型；</span
-          >
-          <span class="upload-tip"
-            >3、选择文件后可以预览数据，只有点击
+          <span class="upload-tip">
+            1、目前仅支持移动端 <b>支付宝/微信/京东金融</b> 导出的 <b>CSV</b> 账单文件；
+            <el-button type="warning" @click="howExport">如何导出？</el-button>
+          </span>
+          <span class="upload-tip">
+            2、导入数据默认分为 <b>支出/收入/不计收支</b> 三种流水类型；
+          </span>
+          <span class="upload-tip">
+            3、选择文件后可以预览数据，只有点击
             <el-button type="primary" @click="submitUpload">确定导入</el-button>
-            后才会上传数据。</span
-          >
+            后才会上传数据。
+          </span>
         </div>
       </template>
     </el-upload>
@@ -302,6 +303,10 @@ onMounted(() => {
     typeRelation.value = res
   })
 })
+
+const howExport = () => {
+  window.open('https://oldmoon.top/post/211')
+}
 </script>
 
 <style>
@@ -334,7 +339,7 @@ onMounted(() => {
 .upload-info {
   flex: 1;
   display: flex;
-  width: 30rem;
+  width: 40rem;
   text-align: left; /* 将内容左对齐 */
 }
 .upload-tip {

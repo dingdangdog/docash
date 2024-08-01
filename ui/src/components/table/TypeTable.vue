@@ -21,8 +21,8 @@
     </div>
     <div class="queryParam">
       <!-- 点击自动映射会发生什么？会将现有的流水数据中的`消费类型`按照`自动映射配置`的设置关系进行自动转换。 -->
-      <el-button type="primary" @click="hisFlowTypeConvert">自动映射配置</el-button>
-      <el-button type="warning" @click="hisFlowTypeConvert">开始自动映射</el-button>
+      <el-button type="primary" @click="showSetConvertDialog()">分类映射配置</el-button>
+      <el-button type="warning" @click="hisFlowTypeConvert()">历史数据映射</el-button>
     </div>
   </el-row>
 
@@ -42,7 +42,7 @@
     </el-table>
   </div>
 
-  <el-dialog style="width: 20vw" v-model="typeDialog.visible" :title="typeDialog.title">
+  <el-dialog style="width: 20rem" v-model="typeDialog.visible" :title="typeDialog.title">
     <div class="el-dialog-main">
       <el-form ref="typeFormRef" :model="editType" :rules="typeFormRules">
         <el-form-item label="关联流水类型" :label-width="formLabelWidth" prop="flowType">
@@ -66,6 +66,11 @@
       </span>
     </template>
   </el-dialog>
+    <!-- 弹出框表单：类型转换配置 -->
+    <el-dialog style="width: 35rem" v-model="setConvertDialog.visible" :title="setConvertDialog.title">
+    <SetConvertDialog />
+  </el-dialog>
+
 </template>
 
 <script setup lang="ts">
@@ -76,6 +81,7 @@ import type { Typer } from '@/types/model/typer'
 import { ElMessage, type FormInstance, type FormRules, ElLoading, ElMessageBox } from 'element-plus'
 import { update, getAll } from '@/api/api.typer'
 import { typeConvert } from '@/utils/flowConvert'
+import SetConvertDialog from '@/components/dialog/SetConvertDialog.vue'
 
 // 加载蒙版显示控制器
 const loading = ref(true)
@@ -202,6 +208,15 @@ const hisFlowTypeConvert = async () => {
       loading.close()
       doQuery()
     })
+}
+
+const setConvertDialog = ref({
+  visible: false,
+  title: ''
+})
+const showSetConvertDialog = () => {
+  setConvertDialog.value.visible = true
+  setConvertDialog.value.title = '分类映射配置'
 }
 </script>
 

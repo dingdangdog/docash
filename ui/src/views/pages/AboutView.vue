@@ -1,12 +1,15 @@
 <template>
   <div class="about">
-    <img src="https://images.oldmoon.top/images/dingdangdog/dingdangdog1674980314.png" alt="icon" style="width:10rem;height:10rem"/>
+    <img
+      src="https://images.oldmoon.top/images/dingdangdog/dingdangdog1674980314.png"
+      alt="icon"
+      style="width: 10rem; height: 10rem"
+    />
     <p>
-      Powered by
-      <a href="#" @click="openSource()">cashbook-desktop_v{{ version }}</a>
+      Github: <a href="#" @click="openSource()">DoCash_v{{ version }}</a>
     </p>
     <!-- <hr /> -->
-    <p>友链：<a href="#" @click="openOldmoon()">oldmoon.top</a></p>
+    <p>作者博客: <a href="#" @click="openOldmoon()">oldmoon.top</a></p>
   </div>
 </template>
 
@@ -16,7 +19,7 @@ import { ref } from 'vue'
 const version = ref(localStorage.getItem('version'))
 
 const openSource = () => {
-  window.open('https://github.com/DingDangDog/cashbook-desktop')
+  window.open('https://github.com/DingDangDog/docash')
 }
 
 const openOldmoon = () => {

@@ -2,8 +2,8 @@
   <div class="login-container">
     <!-- set input width -->
     <div class="icon-container">
-      <img src="@/assets/images/cashbook.png" width="60" />
-      <h1 style="margin-left: 2rem">Casbook-Desktop</h1>
+      <img src="@/assets/images/DoCash.png" width="60" />
+      <h1 style="margin-left: 2rem">DoCash</h1>
     </div>
     <div class="form-container">
       <el-form ref="loginForm" :model="formData" :rules="rules" label-width="10rem">

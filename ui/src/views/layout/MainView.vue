@@ -3,7 +3,7 @@
     <div class="window-title">
       <div class="window-title-text">
         <img style="height: 1.5rem; margin: 0.2rem" src="@/assets/icon.ico" fit="cover" />
-        <el-text style="color: white; font-weight: bold">CashBook</el-text>
+        <el-text style="color: white; font-weight: bold">DoCash</el-text>
       </div>
       <div class="window-title-buttons">
         <div class="button" @click="minimize">

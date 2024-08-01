@@ -24,7 +24,8 @@ const getTypeConvertConfig = (bookId) => {
 const saveTypeConvertConfig = (bookId, config) => {
   const fileName = `type_convert${bookId}.json`;
   const filePath = getConfigFileName(fileName);
-  saveJsonFile(filePath, JSON.parse(config));
+  // saveJsonFile(filePath, JSON.parse(config));
+  saveJsonFile(filePath, config);
   return { c: 200, d: true };
 };
 

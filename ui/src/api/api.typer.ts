@@ -51,7 +51,5 @@ export function getTypeRelation(): Promise<Record<string, string>> {
  * 更新类型关系
  */
 export function updateTypeRelation(types: Record<string, string>): Promise<number> {
-  // TODO
-  // return $http({ url: prefix + "/type/updateTypeRelation", method: "post", data: types});
   return api('saveTypeConvertConfig', localStorage.getItem("bookId"), types)
 }
